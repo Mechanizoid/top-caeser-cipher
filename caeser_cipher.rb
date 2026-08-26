@@ -1,27 +1,22 @@
 # TOP Project: Caeser Cipher
 
-def caeser_cipher(string, shift)
-  plaintext_array = string.split('')
+def shift_character(character, shift)
+  offset = /[A-Z]/.match?(character) ? 65 : 97
 
-  ciphertext_array = plaintext_array.map do | character |
-    if /[a-z]/.match?(character)
-      offset = 97
-      character = ((((character.ord - offset) + shift) % 26) + offset).chr
-    elsif /[A-Z]/.match?(character)
-      offset = 65
-      character = ((((character.ord - offset) + shift) % 26) + offset).chr
-    end
-
+  /[A-Za-z]/.match?(character) ?
+    ((((character.ord - offset) + shift) % 26) + offset).chr :
     character
-  end
-
-  ciphertext_array.join('')
 end
 
-# Begin script
-print "Enter your plaintext: "
-input_string = gets.chomp
-print "Enter your desired shift (0..26): "
-shift = gets.chomp.to_i
+def caeser_cipher(string, shift)
+  string.chars.map { | character | shift_character(character, shift) }.join
+end
 
-puts "\nCiphertext:\n#{caeser_cipher(input_string, shift)}"
+if __FILE__ == $0
+  print "Enter your plaintext: "
+  input_string = gets.chomp
+  print "Enter your desired shift (0..26): "
+  shift = gets.chomp.to_i
+
+  puts "\nCiphertext:\n#{caeser_cipher(input_string, shift)}"
+end
