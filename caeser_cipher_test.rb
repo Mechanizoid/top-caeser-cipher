@@ -26,11 +26,11 @@ class CaeserCipherTest < Minitest::Test
     assert_equal(ciphertext, caeser_cipher(plaintext, 7))
   end
 
-  def works_with_zero_shift
+  def test_with_zero_shift
     assert_equal("Bob plays the harmonica well?", caeser_cipher("Bob plays the harmonica well?", 0))
   end
 
-  def works_with_shift_of_26
+  def test_with_shift_of_26
     assert_equal("This string is unchanged?", caeser_cipher("This string is unchanged?", 26))
   end
 end
