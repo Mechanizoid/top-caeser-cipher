@@ -1,4 +1,4 @@
-# TOP Project: Caeser Cipher
+# frozen_string_literal: true
 
 def shift_character(character, shift)
   offset = /[A-Z]/.match?(character) ? 65 : 97
@@ -14,7 +14,7 @@ def caeser_cipher(string, shift)
   string.chars.map { |character| shift_character(character, shift) }.join
 end
 
-if __FILE__ == $0
+if __FILE__ == $PROGRAM_NAME
   print 'Enter your plaintext: '
   input_string = gets.chomp
   print 'Enter your desired shift (0..26): '
